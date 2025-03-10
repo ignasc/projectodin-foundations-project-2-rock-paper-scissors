@@ -8,6 +8,9 @@ Return win/lost message
 const ROCK = "rock"
 const PAPER = "paper"
 const SCISSORS = "scissors"
+const WIN = "win"
+const LOST = "lost"
+const TIE = "tie"
 
 function getComputerInput(){
     /*function that generates a choice for computer with rock paper or scissors*/
@@ -54,27 +57,27 @@ function getGameResults(computerChoice, playerChoice){
     switch(computerChoice){
         case ROCK:
             if(playerChoice == SCISSORS){
-                return "You lost!"
+                return LOST
             } else if(playerChoice == PAPER){
-                return "You win!"
+                return WIN
             } else {
-                return "It is a tie!"
+                return TIE
             }
         case PAPER:
             if(playerChoice == ROCK){
-                return "You lost!"
+                return LOST
             } else if(playerChoice == SCISSORS){
-                return "You win!"
+                return WIN
             } else {
-                return "It is a tie!"
+                return TIE
             }
         case SCISSORS:
             if(playerChoice == PAPER){
-                return "You lost!"
+                return LOST
             } else if(playerChoice == ROCK){
-                return "You win!"
+                return WIN
             } else {
-                return "It is a tie!"
+                return TIE
             }
     }
 
@@ -82,12 +85,25 @@ function getGameResults(computerChoice, playerChoice){
 
 function runGame(){
     /*function that runs the game*/
-    let computerResult = getComputerInput()
-    let humanResult = getHumanInput()
-    if(humanResult == -1){
-        console.log("Incorrect option chosen, reload page and try again.")
-    } else {
-        console.log("You (" + humanResult + ") vs Computer (" + computerResult + ")\n\n" + getGameResults(computerResult, humanResult))
+    let computerResult = null
+    let humanResult = null
+    let computerScore = 0
+    let humanScore = 0
+    let gameOver = false
+
+    while (gameOver != true){
+
+        computerResult = getComputerInput()
+        humanResult = getHumanInput()
+
+        if(humanResult == -1){
+            console.log("Incorrect option chosen, reload page and try again.")
+        } else {
+            console.log("You (" + humanResult + ") vs Computer (" + computerResult + ")\n\n" + getGameResults(computerResult, humanResult) + "\n\nFinal Score:")
+        }
+
+        gameOver = true
+
     }
 }
 
