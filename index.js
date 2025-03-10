@@ -12,7 +12,14 @@ const WIN = "win"
 const LOST = "lost"
 const TIE = "tie"
 
-function getComputerInput(){
+let computerResult = null
+let humanResult = null
+let computerScore = 0
+let humanScore = 0
+let gameOver = false
+let gameMessage = ""
+
+function getComputerChoice(){
     /*function that generates a choice for computer with rock paper or scissors*/
     let choice = Math.random()
     let result = ""
@@ -26,7 +33,7 @@ function getComputerInput(){
     return result
 }
 
-function getHumanInput(){
+function getHumanChoice(){
     /*function that lets player select the choice for rock paper or scissors*/
     let choice = parseInt(prompt("1 - Rock\n2 - Paper\n3 - Scissors"))
     let result
@@ -83,34 +90,29 @@ function getGameResults(computerChoice, playerChoice){
 
 }
 
-function runGame(){
-    /*function that runs the game*/
-    let computerResult = null
-    let humanResult = null
-    let computerScore = 0
-    let humanScore = 0
-    let gameOver = false
-    let gameMessage = ""
-
-    while (gameOver != true){
-
+function playRound(){
+    /*function that runs a single game game*/
+    
+    computerResult = getComputerChoice()
+    humanResult = getHumanChoice()
+    let gameResult = ""
+    
+    if(humanResult == -1){
+        console.log("Incorrect option chosen, please try again.")
+    } else {
+        gameResult = getGameResults(computerResult, humanResult)
         
-        computerResult = getComputerInput()
-        humanResult = getHumanInput()
-        
-        if(humanResult == -1){
-            console.log("Incorrect option chosen, please try again.")
-        } else {
-            console.log("You (" + humanResult + ") vs Computer (" + computerResult + ")\n\n" + getGameResults(computerResult, humanResult) + "\n\nFinal Score:")
-        }
-        
-        if(getGameResults(computerResult, humanResult) == WIN) (
+        if(gameResult == WIN) {
             humanScore += 1
-        )
-        console.log(humanScore)
-        if(humanScore == 3){gameOver = true}
+            console.log("You win this round.")
+        }
+
     }
+    
+    console.log(humanScore)
+    if(humanScore == 3){gameOver = true}
+
 }
 
 /*Run the game*/
-runGame()
+playRound()
