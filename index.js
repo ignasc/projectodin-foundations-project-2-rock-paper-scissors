@@ -90,20 +90,25 @@ function runGame(){
     let computerScore = 0
     let humanScore = 0
     let gameOver = false
+    let gameMessage = ""
 
     while (gameOver != true){
 
+        
         computerResult = getComputerInput()
         humanResult = getHumanInput()
-
+        
         if(humanResult == -1){
-            console.log("Incorrect option chosen, reload page and try again.")
+            console.log("Incorrect option chosen, please try again.")
         } else {
             console.log("You (" + humanResult + ") vs Computer (" + computerResult + ")\n\n" + getGameResults(computerResult, humanResult) + "\n\nFinal Score:")
         }
-
-        gameOver = true
-
+        
+        if(getGameResults(computerResult, humanResult) == WIN) (
+            humanScore += 1
+        )
+        console.log(humanScore)
+        if(humanScore == 3){gameOver = true}
     }
 }
 
