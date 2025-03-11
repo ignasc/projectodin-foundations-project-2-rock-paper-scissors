@@ -1,10 +1,3 @@
-/*
-GET human input
-GET computer input
-DETERMINE who wins
-Return win/lost message
-*/
-
 const ROCK = "Rock"
 const PAPER = "Paper"
 const SCISSORS = "Scissors"
@@ -19,7 +12,7 @@ let humanScore = 0
 let gameOver = false
 
 function getComputerChoice(){
-    /*function that generates a choice for computer with rock paper or scissors*/
+    /*computer chooses rock paper or scissors with 33% chance to pick each one.*/
     let choice = Math.random()
     let result = ""
     if( choice <= 0.33){
@@ -33,7 +26,7 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    /*function that lets player select the choice for rock paper or scissors*/
+    /*player promted to pick rock paper or scissors using numbers 1-3*/
     let choice = parseInt(prompt("1 - Rock\n2 - Paper\n3 - Scissors"))
     let result
     
@@ -59,7 +52,6 @@ function getHumanChoice(){
 }
 
 function getGameResults(computerChoice, playerChoice){
-    /*function that returns the result of the game*/
     switch(computerChoice){
         case ROCK:
             if(playerChoice == SCISSORS){
@@ -100,9 +92,6 @@ function playRound(){
         console.log("Incorrect option chosen, please try again.")
     } else {
         gameResult = getGameResults(computerChoice, humanChoice)
-        
-        if(gameResult == WIN) {
-        }
         
         switch (gameResult) {
             case WIN:
