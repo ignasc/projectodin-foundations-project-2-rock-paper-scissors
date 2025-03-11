@@ -17,7 +17,6 @@ let humanChoice = null
 let computerScore = 0
 let humanScore = 0
 let gameOver = false
-let gameMessage = ""
 
 function getComputerChoice(){
     /*function that generates a choice for computer with rock paper or scissors*/
