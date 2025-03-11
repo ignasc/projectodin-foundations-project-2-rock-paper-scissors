@@ -114,17 +114,38 @@ function playRound(){
                 computerScore += 1
                 console.log("You lost this round! " + humanChoice + " doesn't beat " + computerChoice + ".")
                 break;
-        
+            case TIE:
+                console.log("It's a tie! You both picked " + humanChoice + ".")
+                break;
             default:
                 break;
         }
 
     }
-    
-    console.log(humanScore)
-    console.log("Score:\nYou: " + humanScore + "\nComputer: " + computerScore)
 
 }
 
+function playGame(){
+    humanScore = 0
+    computerScore = 0
+    let numberOfRounds = 5
+
+    while(numberOfRounds != 0){
+        playRound()
+        numberOfRounds -= 1
+    }
+
+    console.log("Game is over. Final Score:")
+    console.log("Score:\nYou: " + humanScore + "\nComputer: " + computerScore)
+
+    if(humanScore > computerScore){
+        console.log("You won the game!")
+    } else if(humanScore < computerScore) {
+        console.log("You lost the game!")
+    } else {
+        console.log("It is a tie!")
+    }
+
+}
 /*Run the game*/
-playRound()
+playGame()
