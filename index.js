@@ -5,15 +5,15 @@ DETERMINE who wins
 Return win/lost message
 */
 
-const ROCK = "rock"
-const PAPER = "paper"
-const SCISSORS = "scissors"
-const WIN = "win"
-const LOST = "lost"
-const TIE = "tie"
+const ROCK = "Rock"
+const PAPER = "Paper"
+const SCISSORS = "Scissors"
+const WIN = "Win"
+const LOST = "Lost"
+const TIE = "Tie"
 
-let computerResult = null
-let humanResult = null
+let computerChoice = null
+let humanChoice = null
 let computerScore = 0
 let humanScore = 0
 let gameOver = false
@@ -93,24 +93,36 @@ function getGameResults(computerChoice, playerChoice){
 function playRound(){
     /*function that runs a single game game*/
     
-    computerResult = getComputerChoice()
-    humanResult = getHumanChoice()
+    computerChoice = getComputerChoice()
+    humanChoice = getHumanChoice()
     let gameResult = ""
     
-    if(humanResult == -1){
+    if(humanChoice == -1){
         console.log("Incorrect option chosen, please try again.")
     } else {
-        gameResult = getGameResults(computerResult, humanResult)
+        gameResult = getGameResults(computerChoice, humanChoice)
         
         if(gameResult == WIN) {
-            humanScore += 1
-            console.log("You win this round.")
+        }
+        
+        switch (gameResult) {
+            case WIN:
+                humanScore += 1
+                console.log("You win this round! " + humanChoice + " beats " + computerChoice + ".")
+                break;
+            case LOST:
+                computerScore += 1
+                console.log("You lost this round! " + humanChoice + " doesn't beat " + computerChoice + ".")
+                break;
+        
+            default:
+                break;
         }
 
     }
     
     console.log(humanScore)
-    if(humanScore == 3){gameOver = true}
+    console.log("Score:\nYou: " + humanScore + "\nComputer: " + computerScore)
 
 }
 
