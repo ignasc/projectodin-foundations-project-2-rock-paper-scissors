@@ -153,6 +153,18 @@ const btnScissors = document.createElement("button");
 btnScissors.setAttribute("id","btn-scissors");
 btnScissors.textContent = "Scissors";
 
+const scoreTable = document.querySelector("#score-table");
+scoreTable.textContent = "You (0) : (0) Computer";
+
+gameApp.appendChild(scoreTable);
 gameApp.appendChild(btnRock);
 gameApp.appendChild(btnPaper);
 gameApp.appendChild(btnScissors);
+
+const allButtons = document.querySelectorAll("button");
+
+allButtons.forEach((button)=>{
+    button.addEventListener("click", (e)=>{
+        console.log(e.target.textContent + " button was pressed")
+    });
+});
