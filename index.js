@@ -1,9 +1,9 @@
-const ROCK = "Rock"
-const PAPER = "Paper"
-const SCISSORS = "Scissors"
-const WIN = "Win"
-const LOST = "Lost"
-const TIE = "Tie"
+const ROCK = "rock"
+const PAPER = "paper"
+const SCISSORS = "scissors"
+const WIN = "win"
+const LOST = "lost"
+const TIE = "tie"
 
 let computerChoice = null
 let humanChoice = null
@@ -81,11 +81,11 @@ function getGameResults(computerChoice, playerChoice){
 
 }
 
-function playRound(){
+function playRound(playerChoice){
     /*function that runs a single game game*/
     
     computerChoice = getComputerChoice()
-    humanChoice = getHumanChoice()
+    humanChoice = playerChoice
     let gameResult = ""
     
     if(humanChoice == -1){
@@ -142,15 +142,17 @@ playGame()
 const gameApp = document.querySelector("#root");
 
 const btnRock = document.createElement("button");
-btnRock.setAttribute("id","btn-rock");
+btnRock.setAttribute("id","btn-" + ROCK);
+btnRock.setAttribute("value",ROCK);
 btnRock.textContent = "Rock";
 
 const btnPaper = document.createElement("button");
-btnPaper.setAttribute("id","btn-paper");
+btnPaper.setAttribute("id","btn-" + PAPER);btnPaper.setAttribute("value",PAPER);
 btnPaper.textContent = "Paper";
 
 const btnScissors = document.createElement("button");
-btnScissors.setAttribute("id","btn-scissors");
+btnScissors.setAttribute("id","btn-" + SCISSORS);
+btnScissors.setAttribute("value",SCISSORS);
 btnScissors.textContent = "Scissors";
 
 const scoreTable = document.querySelector("#score-table");
@@ -165,6 +167,8 @@ const allButtons = document.querySelectorAll("button");
 
 allButtons.forEach((button)=>{
     button.addEventListener("click", (e)=>{
-        console.log(e.target.textContent + " button was pressed")
+        
+        console.log(e.target.value + " button was pressed");
+        playRound(e.target.value);
     });
 });
