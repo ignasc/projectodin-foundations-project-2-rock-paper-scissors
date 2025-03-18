@@ -1,6 +1,7 @@
 const ROCK = "rock"
 const PAPER = "paper"
 const SCISSORS = "scissors"
+const RESTARTGAME = "restartgame";
 const WIN = "win"
 const LOST = "lost"
 const TIE = "tie"
@@ -28,6 +29,11 @@ btnScissors.setAttribute("id","btn-" + SCISSORS);
 btnScissors.setAttribute("value",SCISSORS);
 btnScissors.textContent = "Scissors";
 
+const btnRestart = document.createElement("button");
+btnRestart.disabled = true;
+btnRestart.setAttribute("id","btn-" + RESTARTGAME);
+btnRestart.textContent = "Restart Game";
+
 const gameMessage = document.createElement("div");
 gameMessage.setAttribute("id", "game-message");gameMessage.textContent = "To start, just pick your choice from above.";
 
@@ -37,6 +43,7 @@ scoreTable.setAttribute("id", "score-table");scoreTable.textContent = "You (" + 
 gameApp.appendChild(btnRock);
 gameApp.appendChild(btnPaper);
 gameApp.appendChild(btnScissors);
+gameApp.appendChild(btnRestart);
 
 gameApp.appendChild(gameMessage);
 gameApp.appendChild(scoreTable);
@@ -44,11 +51,16 @@ gameApp.appendChild(scoreTable);
 const allButtons = document.querySelectorAll("button");
 
 allButtons.forEach((button)=>{
-    button.addEventListener("click", (e)=>{
-        
-        console.log(e.target.value + " button was pressed");
-        playRound(e.target.value);
-    });
+    if(button.id != ("btn-" + RESTARTGAME)){
+        button.addEventListener("click", (e)=>{
+            
+            playRound(e.target.value);
+        });
+    };
+});
+
+document.querySelector("#btn-" + RESTARTGAME).addEventListener("click", (e)=>{
+    restartGame();
 });
 
 function getComputerChoice(){
@@ -169,6 +181,7 @@ function checkEndGameConditions(){
         btnRock.disabled = true;
         btnPaper.disabled = true;
         btnScissors.disabled = true;
+        btnRestart.disabled = false;
 
         if(humanScore == 5){
             updateGameMessage("Game over. You win!");
@@ -176,4 +189,16 @@ function checkEndGameConditions(){
             updateGameMessage("Game over. Computer wins!");
         };
     };
+};
+
+function restartGame(){
+
+    btnRock.disabled = false;
+    btnPaper.disabled = false;
+    btnScissors.disabled = false;
+
+    humanScore = 0;
+    computerScore = 0;
+    updateGameScore();
+
 };
