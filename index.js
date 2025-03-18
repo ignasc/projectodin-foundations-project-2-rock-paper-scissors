@@ -5,11 +5,12 @@ const WIN = "win"
 const LOST = "lost"
 const TIE = "tie"
 
-let computerChoice = null
-let humanChoice = null
-let computerScore = 0
-let humanScore = 0
-let gameOver = false
+let computerChoice = null;
+let humanChoice = null;
+let computerScore = 0;
+let humanScore = 0;
+let gameOver = false;
+let maxNumberOfWins = 5;
 
 const gameApp = document.querySelector("#root");
 
@@ -151,7 +152,7 @@ function playRound(playerChoice){
     };
 
     updateGameScore(humanScore, computerScore);
-
+    checkEndGameConditions();
 }
 
 function updateGameMessage(message){
@@ -160,4 +161,19 @@ function updateGameMessage(message){
 
 function updateGameScore(humanScore = 0, computerScore = 0){
     scoreTable.textContent = "You (" + humanScore + ") : (" + computerScore + ") Computer";
+};
+
+function checkEndGameConditions(){
+    if(humanScore == maxNumberOfWins || computerScore == maxNumberOfWins){
+
+        btnRock.disabled = true;
+        btnPaper.disabled = true;
+        btnScissors.disabled = true;
+
+        if(humanScore == 5){
+            updateGameMessage("Game over. You win!");
+        } else{
+            updateGameMessage("Game over. Computer wins!");
+        };
+    };
 };
