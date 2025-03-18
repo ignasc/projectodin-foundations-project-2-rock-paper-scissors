@@ -27,6 +27,9 @@ btnScissors.setAttribute("id","btn-" + SCISSORS);
 btnScissors.setAttribute("value",SCISSORS);
 btnScissors.textContent = "Scissors";
 
+const gameMessage = document.createElement("div");
+gameMessage.setAttribute("id", "game-message");gameMessage.textContent = "To start, just pick your choice from above.";
+
 const scoreTable = document.createElement("div");
 scoreTable.setAttribute("id", "score-table");scoreTable.textContent = "You (" + humanScore + ") : (" + computerScore + ") Computer";
 
@@ -34,6 +37,7 @@ gameApp.appendChild(btnRock);
 gameApp.appendChild(btnPaper);
 gameApp.appendChild(btnScissors);
 
+gameApp.appendChild(gameMessage);
 gameApp.appendChild(scoreTable);
 
 const allButtons = document.querySelectorAll("button");
@@ -131,22 +135,32 @@ function playRound(playerChoice){
         switch (gameResult) {
             case WIN:
                 humanScore += 1
-                console.log("You win this round! " + humanChoice + " beats " + computerChoice + ".")
+                updateGameMessage("You win this round! " + humanChoice + " beats " + computerChoice + ".");
                 break;
             case LOST:
                 computerScore += 1
-                console.log("You lost this round! " + humanChoice + " doesn't beat " + computerChoice + ".")
+                updateGameMessage("You lost this round! " + humanChoice + " doesn't beat " + computerChoice + ".");
                 break;
             case TIE:
-                console.log("It's a tie! You both picked " + humanChoice + ".")
+                updateGameMessage("It's a tie! You both picked " + humanChoice + ".");
                 break;
             default:
                 break;
-        }
+        };
 
-    }
+    };
+
+    updateGameScore(humanScore, computerScore);
 
 }
+
+function updateGameMessage(message){
+    gameMessage.textContent = message;
+};
+
+function updateGameScore(humanScore = 0, computerScore = 0){
+    scoreTable.textContent = "You (" + humanScore + ") : (" + computerScore + ") Computer";
+};
 
 function playGame(){
     humanScore = 0
