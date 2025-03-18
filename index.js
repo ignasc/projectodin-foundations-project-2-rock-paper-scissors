@@ -161,26 +161,3 @@ function updateGameMessage(message){
 function updateGameScore(humanScore = 0, computerScore = 0){
     scoreTable.textContent = "You (" + humanScore + ") : (" + computerScore + ") Computer";
 };
-
-function playGame(){
-    humanScore = 0
-    computerScore = 0
-    let numberOfRounds = 5
-
-        /*while(numberOfRounds != 0){
-        playRound()
-        numberOfRounds -= 1
-    }*/
-
-    console.log("Game is over. Final Score:")
-    console.log("Score:\nYou: " + humanScore + "\nComputer: " + computerScore)
-
-    if(humanScore > computerScore){
-        console.log("You won the game!")
-    } else if(humanScore < computerScore) {
-        console.log("You lost the game!")
-    } else {
-        console.log("It is a tie!")
-    }
-
-}
