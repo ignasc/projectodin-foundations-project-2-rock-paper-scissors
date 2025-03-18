@@ -118,10 +118,10 @@ function playGame(){
     computerScore = 0
     let numberOfRounds = 5
 
-    while(numberOfRounds != 0){
+        /*while(numberOfRounds != 0){
         playRound()
         numberOfRounds -= 1
-    }
+    }*/
 
     console.log("Game is over. Final Score:")
     console.log("Score:\nYou: " + humanScore + "\nComputer: " + computerScore)
@@ -135,5 +135,24 @@ function playGame(){
     }
 
 }
+
 /*Run the game*/
 playGame()
+
+const gameApp = document.querySelector("#root");
+
+const btnRock = document.createElement("button");
+btnRock.setAttribute("id","btn-rock");
+btnRock.textContent = "Rock";
+
+const btnPaper = document.createElement("button");
+btnPaper.setAttribute("id","btn-paper");
+btnPaper.textContent = "Paper";
+
+const btnScissors = document.createElement("button");
+btnScissors.setAttribute("id","btn-scissors");
+btnScissors.textContent = "Scissors";
+
+gameApp.appendChild(btnRock);
+gameApp.appendChild(btnPaper);
+gameApp.appendChild(btnScissors);
