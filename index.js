@@ -11,6 +11,41 @@ let computerScore = 0
 let humanScore = 0
 let gameOver = false
 
+const gameApp = document.querySelector("#root");
+
+const btnRock = document.createElement("button");
+btnRock.setAttribute("id","btn-" + ROCK);
+btnRock.setAttribute("value",ROCK);
+btnRock.textContent = "Rock";
+
+const btnPaper = document.createElement("button");
+btnPaper.setAttribute("id","btn-" + PAPER);btnPaper.setAttribute("value",PAPER);
+btnPaper.textContent = "Paper";
+
+const btnScissors = document.createElement("button");
+btnScissors.setAttribute("id","btn-" + SCISSORS);
+btnScissors.setAttribute("value",SCISSORS);
+btnScissors.textContent = "Scissors";
+
+const scoreTable = document.createElement("div");
+scoreTable.setAttribute("id", "score-table");scoreTable.textContent = "You (" + humanScore + ") : (" + computerScore + ") Computer";
+
+gameApp.appendChild(btnRock);
+gameApp.appendChild(btnPaper);
+gameApp.appendChild(btnScissors);
+
+gameApp.appendChild(scoreTable);
+
+const allButtons = document.querySelectorAll("button");
+
+allButtons.forEach((button)=>{
+    button.addEventListener("click", (e)=>{
+        
+        console.log(e.target.value + " button was pressed");
+        playRound(e.target.value);
+    });
+});
+
 function getComputerChoice(){
     /*computer chooses rock paper or scissors with 33% chance to pick each one.*/
     let choice = Math.random()
@@ -135,40 +170,3 @@ function playGame(){
     }
 
 }
-
-/*Run the game*/
-playGame()
-
-const gameApp = document.querySelector("#root");
-
-const btnRock = document.createElement("button");
-btnRock.setAttribute("id","btn-" + ROCK);
-btnRock.setAttribute("value",ROCK);
-btnRock.textContent = "Rock";
-
-const btnPaper = document.createElement("button");
-btnPaper.setAttribute("id","btn-" + PAPER);btnPaper.setAttribute("value",PAPER);
-btnPaper.textContent = "Paper";
-
-const btnScissors = document.createElement("button");
-btnScissors.setAttribute("id","btn-" + SCISSORS);
-btnScissors.setAttribute("value",SCISSORS);
-btnScissors.textContent = "Scissors";
-
-const scoreTable = document.querySelector("#score-table");
-scoreTable.textContent = "You (0) : (0) Computer";
-
-gameApp.appendChild(scoreTable);
-gameApp.appendChild(btnRock);
-gameApp.appendChild(btnPaper);
-gameApp.appendChild(btnScissors);
-
-const allButtons = document.querySelectorAll("button");
-
-allButtons.forEach((button)=>{
-    button.addEventListener("click", (e)=>{
-        
-        console.log(e.target.value + " button was pressed");
-        playRound(e.target.value);
-    });
-});
